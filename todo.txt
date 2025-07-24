@@ -1,0 +1,7 @@
+вынести в конфиг время жизни токена
+поиск по этой строке:
+time.Now().Add(10 * time.Minute).Unix()
+time.Now().Add(10*time.Minute).Unix()
+time.Now().Add(30 * time.Hour * 24).Unix()
+time.Now().Add(30*time.Hour*24).Unix()
+
