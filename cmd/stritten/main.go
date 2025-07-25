@@ -5,9 +5,10 @@ import (
 	"log"
 
 	stritten "github.com/dmitriitalent/strittenApi"
-	"github.com/dmitriitalent/strittenApi/internal/handler"
-	"github.com/dmitriitalent/strittenApi/internal/repository"
-	"github.com/dmitriitalent/strittenApi/internal/service"
+	router "github.com/dmitriitalent/strittenApi/internal"
+	"github.com/dmitriitalent/strittenApi/internal/handlers"
+	"github.com/dmitriitalent/strittenApi/internal/repositories"
+	"github.com/dmitriitalent/strittenApi/internal/services"
 	_ "github.com/lib/pq"
 	"github.com/spf13/viper"
 )
@@ -17,7 +18,7 @@ func main() {
 		log.Fatalf("Error occured while initializing config: %s", err.Error())
 	}
 
-	db, err := repository.NewPostgresDB(repository.Config{
+	db, err := repositories.NewPostgresDB(repositories.Config{
 		Host:     viper.GetString("db.host"),
 		Port:     viper.GetString("db.port"),
 		Username: viper.GetString("db.username"),
@@ -30,12 +31,13 @@ func main() {
 		log.Fatalf("Error occured while initializing postgres DB: %s", err.Error())
 	}
 
-	repos := repository.NewRepository(db)
-	services := service.NewService(repos)
-	handlers := handler.NewHandler(services)
+	repos := repositories.NewRepositories(db)
+	services := services.NewServices(repos)
+	handlers := handlers.NewHandlers(services)
 
 	srv := stritten.Server{}
-	if err := srv.Run(viper.GetString("PORT"), handlers.InitRouters()); err != nil {
+	router := *router.NewRouter(*handlers);
+	if err := srv.Run(viper.GetString("PORT"), router.InitRoutes()); err != nil {
 		log.Fatalf("Error occured while running http server: %s", err.Error())
 
 		srv.Shutdown(context.Background())
