@@ -6,6 +6,7 @@ import (
 	cryptoService "github.com/dmitriitalent/strittenApi/internal/services/crypto"
 	jwtService "github.com/dmitriitalent/strittenApi/internal/services/jwt"
 	loggerService "github.com/dmitriitalent/strittenApi/internal/services/logger"
+	userService "github.com/dmitriitalent/strittenApi/internal/services/user"
 	validationService "github.com/dmitriitalent/strittenApi/internal/services/validation"
 )
 
@@ -15,6 +16,7 @@ type Services struct {
 	loggerService.Logger
 	cryptoService.Crypto
 	jwtService.Jwt
+	userService.User
 }
 
 func NewServices(repos *repositories.Repositories) *Services {
@@ -28,5 +30,6 @@ func NewServices(repos *repositories.Repositories) *Services {
 		Crypto: cryptoService,
 		Logger: loggerService,
 		Jwt: jwtService,
+		User: userService.NewUserSerivce(repos),
 	}
 }
