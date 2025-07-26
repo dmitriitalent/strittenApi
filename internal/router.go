@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/dmitriitalent/strittenApi/internal/handlers"
 	authHandler "github.com/dmitriitalent/strittenApi/internal/handlers/auth"
+	eventHandler "github.com/dmitriitalent/strittenApi/internal/handlers/event"
 	userHandler "github.com/dmitriitalent/strittenApi/internal/handlers/user"
 	"github.com/gin-gonic/gin"
 )
@@ -10,12 +11,14 @@ import (
 type Router struct {
 	authHandler.Auth
 	userHandler.User
+	eventHandler.Event
 }
 
 func NewRouter(handlers handlers.Handlers) *Router {
 	return &Router{
 		Auth: handlers.Auth,
 		User: handlers.User,
+		Event: handlers.Event,
 	}
 }
 
@@ -36,6 +39,11 @@ func (r *Router) InitRoutes() *gin.Engine {
 		{
 			user.GET("/", r.User.GetUser)
 			user.POST("/update", r.User.UpdateUser)
+		}
+
+		event := api.Group("/event")
+		{
+			event.GET("/", r.Event.GetEvent)
 		}
 	}
 

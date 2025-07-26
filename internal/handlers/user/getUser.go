@@ -16,17 +16,17 @@ type GetUserResponse struct {
 }
 
 func (handler *UserHandler) GetUser(c *gin.Context) {
-	userIdParam := c.Query("user_id")
+	userIdParam := c.Query("id")
 	loginParam := c.Query("login")
 	if userIdParam == "" && loginParam == "" {
-		responses.BadRequest(c, "Add user_id or login param")
-		handler.Logger.Debug(`user_id and login are empty, "%s", "%s"`, userIdParam, loginParam)
+		responses.BadRequest(c, "Add id or login param")
+		handler.Logger.Debug(`id and login are empty, "%s", "%s"`, userIdParam, loginParam)
 		return
 	}
 
 	userId, err := strconv.Atoi(userIdParam)
 	if err != nil {
-		responses.BadRequest(c, "user_id must be number")
+		responses.BadRequest(c, "id must be number")
 		handler.Logger.Debug(`Cannot convert userIdParam (string) to userId int. userIdParam: "%s"`, userIdParam)
 		return
 	}
