@@ -2,8 +2,8 @@ package entity
 
 type AdditionalDatas []AdditionalData
 type AdditionalData struct {
-	Id      int
-	Key     string
-	Value   string
-	EventId int
+	Id      int    `json:"id"`
+	Key     string `json:"key"`
+	Value   string `json:"value"`
+	EventId int    `json:"event_id"`
 }

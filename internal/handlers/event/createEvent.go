@@ -21,12 +21,6 @@ type CreateEventRequest struct {
 	AdditionalData 	[]AdditionalDataRowType `json:"additional_data"`
 }
 
-type AdditionalDataRowTypeResponse struct {
-	Id						int `json:"id"`
-	AdditionalDataRowType
-	EventId					int `json:"event_id"`
-}
-
 type CreateEventResponse struct {
 	Id          int			`json:"id"`
 	Name        string		`json:"name"`

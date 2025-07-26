@@ -8,18 +8,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
 type GetEventResponse struct {
-	Id 				int						`json:"id"`
-	Name 			string					`json:"name"`
-	Description 	string					`json:"description"`
-	Place 			string					`json:"place"`
-	Date 			time.Time				`json:"date"`
-	Count 			int						`json:"count"`
-	Fundraising 	int						`json:"fundraising"`
-	UserId 			int						`json:"user_id"`
+	Id 				int								`json:"id"`
+	Name 			string							`json:"name"`
+	Description 	string							`json:"description"`
+	Place 			string							`json:"place"`
+	Date 			time.Time						`json:"date"`
+	Count 			int								`json:"count"`
+	Fundraising 	int								`json:"fundraising"`
+	UserId 			int								`json:"user_id"`
 
-	AdditionalData 	[]AdditionalDataRowType `json:"additional_data"`
+	AdditionalData 	[]AdditionalDataRowTypeResponse `json:"additional_data"`
 } 
 
 func (handler *EventHandler) GetEvent(c *gin.Context) {
@@ -37,11 +36,25 @@ func (handler *EventHandler) GetEvent(c *gin.Context) {
 		return
 	}
 
-	event, err := handler.Event.GetEvent(eventId)
+	event, additionalDatas, err := handler.Event.GetEvent(eventId)
 	if err != nil {
 		responses.InternalServerError(c)
 		handler.Logger.Debug(err.Error())
 		return
+	}
+
+	var additionalDataResponse []AdditionalDataRowTypeResponse;
+	for _, additionalData := range additionalDatas {
+		additionalDataResponse = append(additionalDataResponse, 
+			AdditionalDataRowTypeResponse{
+				Id: additionalData.Id,
+				AdditionalDataRowType: AdditionalDataRowType{
+					Key: additionalData.Key,
+					Value: additionalData.Value,
+				},
+				EventId: additionalData.EventId,
+			},
+		)
 	}
 
 	responses.Ok(c, GetEventResponse{
@@ -53,5 +66,7 @@ func (handler *EventHandler) GetEvent(c *gin.Context) {
 		Count: 			event.Count,
 		Fundraising: 	event.Fundraising,
 		UserId: 		event.UserId,
+
+		AdditionalData: additionalDataResponse,
 	})
 }
