@@ -9,14 +9,14 @@ import (
 )
 
 type GetEventResponse struct {
-	Id 			int
-	Name 		string
-	Description string
-	Place 		string
-	Date 		time.Time
-	Count 		int
-	Fundraising string
-	UserId 		int
+	Id 			int			`json:"id"`
+	Name 		string		`json:"name"`
+	Description string		`json:"description"`
+	Place 		string		`json:"place"`
+	Date 		time.Time	`json:"date"`
+	Count 		int			`json:"count"`
+	Fundraising int			`json:"fundraising"`
+	UserId 		int			`json:"user_id"`
 } 
 
 func (handler *EventHandler) GetEvent(c *gin.Context) {
