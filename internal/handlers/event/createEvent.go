@@ -10,6 +10,11 @@ import (
 	"github.com/spf13/viper"
 )
 
+type RowType struct {
+	Key 	string `json:"key"`
+	Value 	string `json:"value"`
+}
+
 type CreateEventRequest struct {
 	Name		string 		`json:"name"`
 	Description	string 		`json:"description"`
@@ -17,17 +22,19 @@ type CreateEventRequest struct {
 	Date		time.Time 	`json:"date"`
 	Count		int 		`json:"count"`
 	Fundraising	int			`json:"fundraising"`
+
+	AdditionalData 	[]RowType 	`json:"additional_data"`
 }
 
 type CreateEventResponse struct {
-	Id          int			`json:"id"`
-	Name        string		`json:"name"`
-	Description string		`json:"description"`
-	Place       string		`json:"place"`
-	Date        time.Time	`json:"date"`
-	Count       int			`json:"count"`
-	Fundraising int			`json:"fundraising"`
-	UserId      int			`json:"user_id"`
+	Id          	int			`json:"id"`
+	Name        	string		`json:"name"`
+	Description 	string		`json:"description"`
+	Place       	string		`json:"place"`
+	Date        	time.Time	`json:"date"`
+	Count       	int			`json:"count"`
+	Fundraising 	int			`json:"fundraising"`
+	UserId      	int			`json:"user_id"`
 }
 
 func (handler *EventHandler) CreateEvent(c *gin.Context) {
@@ -62,6 +69,14 @@ func (handler *EventHandler) CreateEvent(c *gin.Context) {
 	
 	userId := int(claims[jwtService.UserIdClaim].(float64))
 
+	additionalData := entity.AdditionalDatas{}
+	for _, row := range dto.AdditionalData {
+		additionalData = append(additionalData, entity.AdditionalData{
+			Key:   row.Key,
+			Value: row.Value,
+		})
+	}
+
 	event := entity.Event{
 		Name: 			dto.Name,
 		Description: 	dto.Description,
@@ -72,7 +87,7 @@ func (handler *EventHandler) CreateEvent(c *gin.Context) {
 		UserId:			userId,
 	}
 
-	createdEvent, err := handler.Event.CreateEvent(event);
+	createdEvent, err := handler.Event.CreateEvent(event, additionalData);
 	if err != nil {
 		responses.InternalServerError(c)
 		handler.Logger.Debug("CreateEventHandler:%s", err.Error())

@@ -7,7 +7,7 @@ import (
 
 type Event interface {
 	GetEvent(id int) (event entity.Event, err error)
-	CreateEvent(entity.Event) (event entity.Event, err error)
+	CreateEvent(event entity.Event, additionalDatas entity.AdditionalDatas) (createdEvent entity.Event, err error)
 }
 
 type EventService struct {
