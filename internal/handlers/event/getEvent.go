@@ -8,15 +8,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+
 type GetEventResponse struct {
-	Id 			int			`json:"id"`
-	Name 		string		`json:"name"`
-	Description string		`json:"description"`
-	Place 		string		`json:"place"`
-	Date 		time.Time	`json:"date"`
-	Count 		int			`json:"count"`
-	Fundraising int			`json:"fundraising"`
-	UserId 		int			`json:"user_id"`
+	Id 				int						`json:"id"`
+	Name 			string					`json:"name"`
+	Description 	string					`json:"description"`
+	Place 			string					`json:"place"`
+	Date 			time.Time				`json:"date"`
+	Count 			int						`json:"count"`
+	Fundraising 	int						`json:"fundraising"`
+	UserId 			int						`json:"user_id"`
+
+	AdditionalData 	[]AdditionalDataRowType `json:"additional_data"`
 } 
 
 func (handler *EventHandler) GetEvent(c *gin.Context) {

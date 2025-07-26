@@ -9,7 +9,7 @@ const eventsTable = "events"
 
 type Event interface {
 	GetEvent(id int) (event entity.Event, err error)
-	CreateEvent(event entity.Event, additionalDatas entity.AdditionalDatas) (createdEvent entity.Event, err error)
+	CreateEvent(event entity.Event, additionalDatas entity.AdditionalDatas) (createdEvent entity.Event, createdAdditionalDatas entity.AdditionalDatas, err error)
 }
 
 type EventRepository struct {
