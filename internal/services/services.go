@@ -27,9 +27,9 @@ func NewServices(repos *repositories.Repositories) *Services {
 	return &Services{
 		Auth: authService.NewAuthService(repos, loggerService, jwtService, cryptoService),
 		Validation: validationService.NewValidationService(),
+		User: userService.NewUserSerivce(repos, cryptoService),
 		Crypto: cryptoService,
 		Logger: loggerService,
 		Jwt: jwtService,
-		User: userService.NewUserSerivce(repos),
 	}
 }

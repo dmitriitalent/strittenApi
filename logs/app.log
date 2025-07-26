@@ -1,2 +1,53 @@
-{"level":"DEBUG","ts":1753435146730294600,"caller":"logger/logger.go:72","msg":"user_id and login are empty, \"\", \"\""}
-{"level":"DEBUG","ts":1753435156098603800,"caller":"logger/logger.go:72","msg":"sql: no rows in result set"}
+{"level":"DEBUG","ts":1753448047233948000,"caller":"logger/logger.go:72","msg":"invalid character '\"' after object key:value pair"}
+{"level":"DEBUG","ts":1753448382395515000,"caller":"logger/logger.go:72","msg":"sql: no rows in result set"}
+{"level":"DEBUG","ts":1753448702368423800,"caller":"logger/logger.go:72","msg":"Login is already used"}
+{"level":"DEBUG","ts":1753448714847868700,"caller":"logger/logger.go:72","msg":"Email is already used"}
+{"level":"DEBUG","ts":1753448718903566700,"caller":"logger/logger.go:72","msg":"Email is already used"}
+{"level":"DEBUG","ts":1753449351752439200,"caller":"logger/logger.go:72","msg":"Email is already used"}
+{"level":"DEBUG","ts":1753449362107018600,"caller":"logger/logger.go:72","msg":"Email is already used"}
+{"level":"DEBUG","ts":1753449380641953600,"caller":"logger/logger.go:72","msg":"Email is already used"}
+{"level":"DEBUG","ts":1753449388680543500,"caller":"logger/logger.go:72","msg":"Login is already used"}
+{"level":"DEBUG","ts":1753450054900929000,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: sql: no rows in result set"}
+{"level":"DEBUG","ts":1753450251678336600,"caller":"logger/logger.go:72","msg":"Login is already used"}
+{"level":"DEBUG","ts":1753450716751178700,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753450722311943400,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753450725239198100,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753450734372999100,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753450738210905800,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753450741124169300,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753450899752693500,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753450984298625500,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451001772372100,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451054532763900,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451059503148400,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451064308333300,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451073576049300,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451075776785900,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451079314099800,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451105608277200,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451182034511800,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451229376150100,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451231685609300,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451255052122600,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451261816683600,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451265493706900,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753451352373021200,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753508757083427100,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753508758868121200,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753508786317399800,"caller":"logger/logger.go:72","msg":"Email is already used"}
+{"level":"DEBUG","ts":1753508803485304900,"caller":"logger/logger.go:72","msg":"Email is already used"}
+{"level":"DEBUG","ts":1753508809761411100,"caller":"logger/logger.go:72","msg":"Login is already used"}
+{"level":"DEBUG","ts":1753509169061961700,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753509191858805800,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753509204780082500,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753509212427655300,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753509218164534200,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753509223323925900,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753509233916937200,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753509237791264300,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753509434936439500,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedSecret too short to be a bcrypted password"}
+{"level":"DEBUG","ts":1753509503327761200,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753509535796273600,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753509733083653800,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753509743679255800,"caller":"logger/logger.go:72","msg":"Password entered to confirm authorization and the old password do not match: crypto/bcrypt: hashedPassword is not the hash of the given password"}
+{"level":"DEBUG","ts":1753509770693434600,"caller":"logger/logger.go:72","msg":"pq: value too long for type character varying(100)"}

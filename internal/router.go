@@ -35,6 +35,7 @@ func (r *Router) InitRoutes() *gin.Engine {
 		user := api.Group("/user")
 		{
 			user.GET("/", r.User.GetUser)
+			user.POST("/update", r.User.UpdateUser)
 		}
 	}
 

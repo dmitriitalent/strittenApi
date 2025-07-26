@@ -13,6 +13,7 @@ type User interface {
 	CreateUser(user entity.User) (id int, err error)
 	FindUserByLogin(login string) (user entity.User, err error)
 	FindUserById(userId int) (user entity.User, err error)
+	UpdateUser(oldUser entity.User) (updatedUser entity.User, err error)
 }
 
 type UserRepository struct {
