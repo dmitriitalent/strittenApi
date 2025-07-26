@@ -44,6 +44,7 @@ func (r *Router) InitRoutes() *gin.Engine {
 		event := api.Group("/event")
 		{
 			event.GET("/", r.Event.GetEvent)
+			event.POST("/create", r.Event.CreateEvent)
 		}
 	}
 

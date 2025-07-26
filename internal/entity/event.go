@@ -9,6 +9,6 @@ type Event struct {
 	Place       string
 	Date        time.Time
 	Count       int
-	Fundraising string
+	Fundraising int
 	UserId      int
 }
