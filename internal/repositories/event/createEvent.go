@@ -8,12 +8,12 @@ import (
 	additionalDataRespository "github.com/dmitriitalent/strittenApi/internal/repositories/additionalDatas"
 )
 
-func (r *EventRepository) CreateEvent(event entity.Event, additionalDatas entity.AdditionalDatas) (entity.Event, error) {
+func (r *EventRepository) CreateEvent(event entity.Event, additionalDatas entity.AdditionalDatas) (entity.Event, entity.AdditionalDatas, error) {
 	var createdEvent entity.Event;
 
 	tx, err := r.db.Begin()
 	if err != nil {
-		return event, fmt.Errorf("EventRepository:CreateEvent: Failed to begin transaction");
+		return event, additionalDatas, fmt.Errorf("EventRepository:CreateEvent: Failed to begin transaction: %s", err.Error());
 	}
 	defer tx.Rollback()
 
@@ -56,7 +56,7 @@ func (r *EventRepository) CreateEvent(event entity.Event, additionalDatas entity
 		&createdEvent.Fundraising,
 		&createdEvent.UserId,
 	); err != nil {
-		return event, err;
+		return event, additionalDatas, err;
 	}
 
 	placeholders := []string{}
@@ -68,15 +68,34 @@ func (r *EventRepository) CreateEvent(event entity.Event, additionalDatas entity
 		i += 3
 	}
 
-	query = fmt.Sprintf("INSERT INTO %s (key, value, event_id) VALUES %s", additionalDataRespository.AdditionalDatasTable, strings.Join(placeholders, ","))
-	if _, err := tx.Exec(query, values...); err != nil {
-		return event, fmt.Errorf("EventRepository:CreateEvent: Failed to add additionalDatas, %s, %s", query, values);
+	query = fmt.Sprintf("INSERT INTO %s (key, value, event_id) VALUES %s RETURNING id, key, value, event_id", additionalDataRespository.AdditionalDatasTable, strings.Join(placeholders, ","))
+	rows, err := tx.Query(query, values...); 
+	if err != nil {
+		return event, additionalDatas, fmt.Errorf("EventRepository:CreateEvent: Failed to add additionalDatas, %s, %s: %s", query, values, err.Error());
+	}
+	if rows == nil {
+		tx.Commit()
+		return createdEvent, additionalDatas, nil
+	}
+
+	var createdAdditionalDatas entity.AdditionalDatas;
+	for rows.Next() {
+		var additionalData entity.AdditionalData;
+		if err := rows.Scan(
+			&additionalData.Id,
+			&additionalData.Key,
+			&additionalData.Value,
+			&additionalData.EventId,
+		); err != nil {
+			return event, additionalDatas, fmt.Errorf("EventRepository:CreateEvent: Failed to scan additionalDatas, %s, %s: %s", query, values, err.Error());
+		}
+		createdAdditionalDatas = append(createdAdditionalDatas, additionalData)
 	}
 
 	err = tx.Commit()
 	if err != nil {
-		return event, fmt.Errorf("EventRepository:CreateEvent: Failed to commit transaction");
+		return event, additionalDatas, fmt.Errorf("EventRepository:CreateEvent: Failed to commit transaction: %s", err.Error());
 	}
 
-	return createdEvent, nil;
+	return createdEvent, createdAdditionalDatas, nil;
 }

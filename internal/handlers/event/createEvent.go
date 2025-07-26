@@ -10,31 +10,34 @@ import (
 	"github.com/spf13/viper"
 )
 
-type RowType struct {
-	Key 	string `json:"key"`
-	Value 	string `json:"value"`
+type CreateEventRequest struct {
+	Name			string 					`json:"name"`
+	Description		string 					`json:"description"`
+	Place			string 					`json:"place"`
+	Date			time.Time 				`json:"date"`
+	Count			int 					`json:"count"`
+	Fundraising		int						`json:"fundraising"`
+
+	AdditionalData 	[]AdditionalDataRowType `json:"additional_data"`
 }
 
-type CreateEventRequest struct {
-	Name		string 		`json:"name"`
-	Description	string 		`json:"description"`
-	Place		string 		`json:"place"`
-	Date		time.Time 	`json:"date"`
-	Count		int 		`json:"count"`
-	Fundraising	int			`json:"fundraising"`
-
-	AdditionalData 	[]RowType 	`json:"additional_data"`
+type AdditionalDataRowTypeResponse struct {
+	Id						int `json:"id"`
+	AdditionalDataRowType
+	EventId					int `json:"event_id"`
 }
 
 type CreateEventResponse struct {
-	Id          	int			`json:"id"`
-	Name        	string		`json:"name"`
-	Description 	string		`json:"description"`
-	Place       	string		`json:"place"`
-	Date        	time.Time	`json:"date"`
-	Count       	int			`json:"count"`
-	Fundraising 	int			`json:"fundraising"`
-	UserId      	int			`json:"user_id"`
+	Id          int			`json:"id"`
+	Name        string		`json:"name"`
+	Description string		`json:"description"`
+	Place       string		`json:"place"`
+	Date        time.Time	`json:"date"`
+	Count       int			`json:"count"`
+	Fundraising int			`json:"fundraising"`
+	UserId      int			`json:"user_id"`
+
+	AdditionalData 	[]AdditionalDataRowTypeResponse `json:"additional_data"`
 }
 
 func (handler *EventHandler) CreateEvent(c *gin.Context) {
@@ -87,12 +90,37 @@ func (handler *EventHandler) CreateEvent(c *gin.Context) {
 		UserId:			userId,
 	}
 
-	createdEvent, err := handler.Event.CreateEvent(event, additionalData);
+	createdEvent, createdAdditionalDatas, err := handler.Event.CreateEvent(event, additionalData);
 	if err != nil {
 		responses.InternalServerError(c)
 		handler.Logger.Debug("CreateEventHandler:%s", err.Error())
 		return 
 	}
 
-	responses.Ok(c, createdEvent)
+	var additionalDataResponse []AdditionalDataRowTypeResponse
+	for _, createdAdditionalData := range createdAdditionalDatas {
+		additionalDataResponse = append(additionalDataResponse, 
+			AdditionalDataRowTypeResponse{
+				Id: createdAdditionalData.Id,
+				AdditionalDataRowType: AdditionalDataRowType{
+					Key:   createdAdditionalData.Key,
+					Value: createdAdditionalData.Value,
+				},
+				EventId: createdAdditionalData.EventId,
+			},
+		)
+	}
+
+	responses.Ok(c, CreateEventResponse{
+		Id: 			createdEvent.Id,
+		Name: 			createdEvent.Name,
+		Description: 	createdEvent.Description,
+		Place: 			createdEvent.Place,
+		Date: 			createdEvent.Date,
+		Count: 			createdEvent.Count,
+		Fundraising: 	createdEvent.Fundraising,
+		UserId: 		createdEvent.UserId,
+
+		AdditionalData: additionalDataResponse,
+	})
 }

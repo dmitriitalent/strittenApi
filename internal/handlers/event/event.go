@@ -8,6 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type AdditionalDataRowType struct {
+	Key 	string `json:"key"`
+	Value 	string `json:"value"`
+}
+
 type Event interface {
 	GetEvent(c *gin.Context)
 	CreateEvent(c *gin.Context)
