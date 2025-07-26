@@ -13,6 +13,12 @@ type AdditionalDataRowType struct {
 	Value 	string `json:"value"`
 }
 
+type AdditionalDataRowTypeResponse struct {
+	Id						int `json:"id"`
+	AdditionalDataRowType
+	EventId					int `json:"event_id"`
+}
+
 type Event interface {
 	GetEvent(c *gin.Context)
 	CreateEvent(c *gin.Context)

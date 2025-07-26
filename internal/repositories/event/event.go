@@ -8,7 +8,7 @@ import (
 const eventsTable = "events"
 
 type Event interface {
-	GetEvent(id int) (event entity.Event, err error)
+	GetEvent(id int) (event entity.Event, additionalDatas entity.AdditionalDatas, err error)
 	CreateEvent(event entity.Event, additionalDatas entity.AdditionalDatas) (createdEvent entity.Event, createdAdditionalDatas entity.AdditionalDatas, err error)
 }
 
